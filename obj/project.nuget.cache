@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ywuPESAKSwGzPPOjqmPCkow9DEQcUnFd8ozuRGFDi2udYy9gCoao/1+3dr7F4dN/PjNyCR/8ywBuAqJ/NDka9w==",
+  "dgSpecHash": "nyzXMCH610crP87Ram1g0WOzJlLlYJV68j1BdOVCSNIofr3m0MG03+w2P3SsLQ827XvttmGXs8l71V2e3olURA==",
   "success": true,
   "projectFilePath": "C:\\Users\\niko.muukkonen\\source\\repos\\BankApplication\\BankApplication.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\niko.muukkonen\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",
     "C:\\Users\\niko.muukkonen\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\niko.muukkonen\\.nuget\\packages\\google.protobuf\\3.32.0\\google.protobuf.3.32.0.nupkg.sha512",
     "C:\\Users\\niko.muukkonen\\.nuget\\packages\\k4os.compression.lz4\\1.3.8\\k4os.compression.lz4.1.3.8.nupkg.sha512",

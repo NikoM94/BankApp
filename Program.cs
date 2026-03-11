@@ -1,3 +1,4 @@
+using BankApplication.Forms;
 namespace BankApplication
 {
     internal static class Program
@@ -11,7 +12,7 @@ namespace BankApplication
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new BankMainView());
+            Application.Run(new RegisterFM());
         }
     }
 }

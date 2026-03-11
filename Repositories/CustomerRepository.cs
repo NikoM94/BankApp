@@ -30,7 +30,7 @@ namespace BankApplication.Repositories
             return false;
         }
 
-        public bool Add(Customer.CustomerParams customer)
+        public bool Add(Customer customer)
         {
             var connection = dbConn.CreateConnection();
             connection.Open();
@@ -49,7 +49,7 @@ namespace BankApplication.Repositories
             return false;
         }
 
-        public bool Update(int id, Customer.CustomerParams customerParams)
+        public bool Update(int id, Customer customer)
         {
             var connection = dbConn.CreateConnection();
             connection.Open();

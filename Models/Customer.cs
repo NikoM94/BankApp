@@ -26,9 +26,10 @@ namespace BankApplication.Models
             public readonly string PostCode;
             public readonly string Email;
             public readonly string Phone;
-            public readonly List<string> AccountIDs;
+            public readonly string UserName;
+            public readonly string Password;
         }
-        public Customer(string firstName, string lastName, string address, string city, string postcode, string email, string phone, List<Account> accounts)
+        public Customer(string firstName, string lastName, string address, string city, string postcode, string email, string phone, string userName, string password)
         { 
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -37,13 +38,19 @@ namespace BankApplication.Models
             this.PostCode = postcode;
             this.Email = email;
             this.Phone = phone;
-            this.Accounts = accounts;
+            this.UserName = userName;
+            this.Password = password;
+
         }
 
         public void AddAccount(Account account)
         {
             this.Accounts.Add(account);
             // UPDATE query here
+        }
+
+        public void AddCustomer(Customer customer)
+        {
         }
 
         public void RemoveAccount(Account account)

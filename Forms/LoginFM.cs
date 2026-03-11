@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace BankApplication.Forms
 {
-    public partial class BankMainViewFM : Form
+    public partial class LoginFM : Form
     {
-        public BankMainViewFM()
+        public LoginFM()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
