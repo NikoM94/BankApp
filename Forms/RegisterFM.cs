@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BankApplication.Utils;
 using BCrypt.Net;
+using BankApplication.Models;
+using BankApplication.Repositories;
 
 namespace BankApplication.Forms
 {
@@ -23,17 +25,19 @@ namespace BankApplication.Forms
         private bool IsValidPassword = false;
         private bool IsValidPhone = false;
         private bool IsValidEmail = false;
-        private InputValidator validator;
+        private InputValidator _validator;
+        private readonly CustomerRepository _repository;
 
         public RegisterFM()
         {
-            this.validator = new InputValidator();
+            _repository = new CustomerRepository(new Data.DataBaseConnection());
+            _validator = new InputValidator();
             InitializeComponent();
         }
 
         private void firstNameTB_TextChanged(object sender, EventArgs e)
         {
-            bool isValidFirstName = validator.ValidateName(firstNameTB.Text);
+            bool isValidFirstName = _validator.ValidateName(firstNameTB.Text);
             firstNameCheckPL.BackColor = isValidFirstName ? Color.Green : Color.Red;
             this.IsValidFirstName = isValidFirstName;
             CheckFormValidity();
@@ -41,7 +45,7 @@ namespace BankApplication.Forms
 
         private void lastNameTB_TextChanged(object sender, EventArgs e)
         {
-            bool isValidLastName = validator.ValidateName(lastNameTB.Text);
+            bool isValidLastName = _validator.ValidateName(lastNameTB.Text);
             lastNameCheckPL.BackColor = isValidLastName ? Color.Green : Color.Red;
             this.IsValidLastName = isValidLastName;
             CheckFormValidity();
@@ -49,7 +53,7 @@ namespace BankApplication.Forms
 
         private void addressTB_TextChanged(object sender, EventArgs e)
         {
-            bool isValidAddress = validator.ValidateAddress(addressTB.Text);
+            bool isValidAddress = _validator.ValidateAddress(addressTB.Text);
             addressCheckPL.BackColor = isValidAddress ? Color.Green : Color.Red;
             this.IsValidAddress = isValidAddress;
             CheckFormValidity();
@@ -57,7 +61,7 @@ namespace BankApplication.Forms
 
         private void zipCodeTB_TextChanged(object sender, EventArgs e)
         {
-            bool isValidZipCode = validator.ValidateZipCode(zipCodeTB.Text);
+            bool isValidZipCode = _validator.ValidateZipCode(zipCodeTB.Text);
             zipCodeCheckPL.BackColor = isValidZipCode ? Color.Green : Color.Red;
             this.IsValidZipCode = isValidZipCode;
             CheckFormValidity();
@@ -65,7 +69,7 @@ namespace BankApplication.Forms
 
         private void cityTB_TextChanged(object sender, EventArgs e)
         {
-            bool isValidCity = validator.ValidateCity(cityTB.Text);
+            bool isValidCity = _validator.ValidateCity(cityTB.Text);
             cityCheckPL.BackColor = isValidCity ? Color.Green : Color.Red;
             this.IsValidCity = isValidCity;
             CheckFormValidity();
@@ -73,7 +77,7 @@ namespace BankApplication.Forms
 
         private void usernameTB_TextChanged(object sender, EventArgs e)
         {
-            bool isValidUsername = validator.ValidateUsername(usernameTB.Text);
+            bool isValidUsername = _validator.ValidateUsername(usernameTB.Text);
             userNameCheckPL.BackColor = isValidUsername ? Color.Green : Color.Red;
             this.IsValidUsername = isValidUsername;
             CheckFormValidity();
@@ -81,7 +85,7 @@ namespace BankApplication.Forms
 
         private void passwordTB_TextChanged(object sender, EventArgs e)
         {
-            bool isValidPassword = validator.ValidatePassword(passwordTB.Text);
+            bool isValidPassword = _validator.ValidatePassword(passwordTB.Text);
             passwordCheckPL.BackColor = isValidPassword ? Color.Green : Color.Red;
             this.IsValidPassword = isValidPassword;
             CheckFormValidity();
@@ -89,7 +93,7 @@ namespace BankApplication.Forms
 
         private void phoneTB_TextChanged(object sender, EventArgs e)
         {
-            bool isValidPhone = validator.ValidatePhone(phoneTB.Text);
+            bool isValidPhone = _validator.ValidatePhone(phoneTB.Text);
             phoneCheckPL.BackColor = isValidPhone ? Color.Green : Color.Red;
             this.IsValidPhone = isValidPhone;
             CheckFormValidity();
@@ -97,7 +101,7 @@ namespace BankApplication.Forms
 
         private void emailTB_TextChanged(object sender, EventArgs e)
         {
-            bool isValidEmail = validator.ValidateEmail(emailTB.Text);
+            bool isValidEmail = _validator.ValidateEmail(emailTB.Text);
             emailCheckPL.BackColor = isValidEmail ? Color.Green : Color.Red;
             this.IsValidEmail = isValidEmail;
             CheckFormValidity();
@@ -113,6 +117,8 @@ namespace BankApplication.Forms
         {
             string password = passwordTB.Text;
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            Customer toAdd = new Customer(firstNameTB.Text, lastNameTB.Text, addressTB.Text, cityTB.Text, zipCodeTB.Text, emailTB.Text, phoneTB.Text, usernameTB.Text, passwordHash);
+            _repository.Add(toAdd);
         }
     }
 }
