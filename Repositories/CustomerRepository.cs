@@ -100,23 +100,28 @@ namespace BankApplication.Repositories
             {
                 return Result.Fail<Customer>("Invalid username");
             }
+
             string storedHash = GetPassWordHash(userName);
 
             if (storedHash == null)
             {
                 return Result.Fail<Customer>("Password was null");
             }
+
             bool isValid = BCrypt.Net.BCrypt.Verify(password, storedHash);
 
             if (!isValid)
             {
                 return Result.Fail<Customer>("Invalid password");
             }
+
             Customer customer = GetCustomer(userName);
+
             if (customer == null)
             {
                 return Result.Fail<Customer>("Failed to get customer");
             }
+
             return Result.Ok(customer);
         }
 
@@ -133,7 +138,6 @@ namespace BankApplication.Repositories
                 if (reader.Read())
                 {
                     customer = new Customer(
-                        Convert.ToInt32(reader["id"].ToString()),
                         reader["firstname"].ToString(),
                         reader["lastname"].ToString(),
                         reader["address"].ToString(),
@@ -144,6 +148,7 @@ namespace BankApplication.Repositories
                         reader["username"].ToString(),
                         reader["password"].ToString()
                         );
+                    customer.Id = Convert.ToInt32(reader["id"].ToString());
                 }
             }
             return customer;
@@ -172,7 +177,7 @@ namespace BankApplication.Repositories
             string query = "SELECT COUNT(*) FROM customers WHERE userName = @usr ";
             var connection = _dbConn.CreateConnection();
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("username", userName);
+            command.Parameters.AddWithValue("@usr", userName);
             connection.Open();
             int count = Convert.ToInt32(command.ExecuteScalar());
             connection.Close();

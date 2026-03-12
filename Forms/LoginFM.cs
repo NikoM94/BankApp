@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using BankApplication.Models;
 using BankApplication.Repositories;
 using BankApplication.Data;
+using FluentResults;
+using MySqlX.XDevAPI.Common;
 
 namespace BankApplication.Forms
 {
@@ -27,16 +29,17 @@ namespace BankApplication.Forms
             string userName = LoginFMUsernameTB.Text;
             string password = LoginFMPasswordTB.Text;
 
-            Customer customer = _repository.Login(userName, password);
-            if (customer != null)
+            Result<Customer> customer = _repository.Login(userName, password);
+            if (customer.IsSuccess)
             {
-                BankMainView mainView = new BankMainView(customer);
+                BankMainView mainView = new BankMainView(customer.Value);
                 this.Hide();
                 mainView.Show();
             }
             else
             {
-                MessageBox.Show("Failed to login", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string errorMessage = customer.Errors.FirstOrDefault()?.Message ?? "Unknown error";
+                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -19,9 +19,8 @@ namespace BankApplication.Models
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public Customer(int id, string firstName, string lastName, string address, string city, string postcode, string email, string phone, string userName, string password)
+        public Customer(string firstName, string lastName, string address, string city, string postcode, string email, string phone, string userName, string password)
         {
-            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Address = address;

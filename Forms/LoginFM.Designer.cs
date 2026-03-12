@@ -66,7 +66,6 @@
             this.LoginFMUsernameTB.Size = new System.Drawing.Size(236, 23);
             this.LoginFMUsernameTB.TabIndex = 2;
             this.LoginFMUsernameTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.LoginFMUsernameTB.UseSystemPasswordChar = true;
             // 
             // LoginFM
             // 
