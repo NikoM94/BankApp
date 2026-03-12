@@ -1,8 +1,8 @@
 ﻿using BankApplication.Data;
 using BankApplication.Models;
 using MySql.Data.MySqlClient;
-using BCrypt.Net;
 using FluentResults;
+using BCrypt.Net;
 
 namespace BankApplication.Repositories
 {
@@ -101,13 +101,12 @@ namespace BankApplication.Repositories
                 return Result.Fail<Customer>("Invalid username");
             }
 
-            string storedHash = GetPassWordHash(userName);
+            string storedHash = GetPassWordHash(userName).Trim();
 
             if (storedHash == null)
             {
                 return Result.Fail<Customer>("Password was null");
             }
-
             bool isValid = BCrypt.Net.BCrypt.Verify(password, storedHash);
 
             if (!isValid)
@@ -129,7 +128,7 @@ namespace BankApplication.Repositories
         {
             string query = "SELECT * FROM customers where username = @usr";
             var connection = _dbConn.CreateConnection();
-            MySqlCommand command = new MySqlCommand(query, connection);
+            var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@usr", userName);
             connection.Open();
             Customer customer = null;
@@ -159,7 +158,7 @@ namespace BankApplication.Repositories
             string query = "SELECT password FROM customers WHERE username = @usr";
             string storedHash = null;
             var connection = _dbConn.CreateConnection();
-            MySqlCommand command = new MySqlCommand(query, connection);
+            var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@usr", userName);
             connection.Open();
             using (MySqlDataReader reader = command.ExecuteReader()) 
@@ -176,7 +175,7 @@ namespace BankApplication.Repositories
         {
             string query = "SELECT COUNT(*) FROM customers WHERE userName = @usr ";
             var connection = _dbConn.CreateConnection();
-            MySqlCommand command = new MySqlCommand(query, connection);
+            var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@usr", userName);
             connection.Open();
             int count = Convert.ToInt32(command.ExecuteScalar());

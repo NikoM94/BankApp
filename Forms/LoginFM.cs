@@ -26,8 +26,8 @@ namespace BankApplication.Forms
 
         private void LoginFMLoginBT_Click(object sender, EventArgs e)
         {
-            string userName = LoginFMUsernameTB.Text;
-            string password = LoginFMPasswordTB.Text;
+            string userName = LoginFMUsernameTB.Text.Trim();
+            string password = LoginFMPasswordTB.Text.Trim();
 
             Result<Customer> customer = _repository.Login(userName, password);
             if (customer.IsSuccess)

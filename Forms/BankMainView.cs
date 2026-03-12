@@ -19,10 +19,5 @@ namespace BankApplication.Forms
             InitializeComponent();
             _loggedInCustomer = loggedInCustomer;
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -39,7 +39,7 @@
             this.LoginFMLoginBT.Location = new System.Drawing.Point(12, 69);
             this.LoginFMLoginBT.Name = "LoginFMLoginBT";
             this.LoginFMLoginBT.Size = new System.Drawing.Size(236, 65);
-            this.LoginFMLoginBT.TabIndex = 0;
+            this.LoginFMLoginBT.TabIndex = 3;
             this.LoginFMLoginBT.Text = "Log in";
             this.LoginFMLoginBT.UseVisualStyleBackColor = true;
             this.LoginFMLoginBT.Click += new System.EventHandler(this.LoginFMLoginBT_Click);
@@ -52,7 +52,7 @@
             this.LoginFMPasswordTB.Name = "LoginFMPasswordTB";
             this.LoginFMPasswordTB.PlaceholderText = "Password";
             this.LoginFMPasswordTB.Size = new System.Drawing.Size(236, 23);
-            this.LoginFMPasswordTB.TabIndex = 1;
+            this.LoginFMPasswordTB.TabIndex = 2;
             this.LoginFMPasswordTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.LoginFMPasswordTB.UseSystemPasswordChar = true;
             // 
@@ -64,7 +64,7 @@
             this.LoginFMUsernameTB.Name = "LoginFMUsernameTB";
             this.LoginFMUsernameTB.PlaceholderText = "Username";
             this.LoginFMUsernameTB.Size = new System.Drawing.Size(236, 23);
-            this.LoginFMUsernameTB.TabIndex = 2;
+            this.LoginFMUsernameTB.TabIndex = 1;
             this.LoginFMUsernameTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // LoginFM

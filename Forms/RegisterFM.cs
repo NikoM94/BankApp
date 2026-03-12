@@ -33,13 +33,14 @@ namespace BankApplication.Forms
             _repository = new CustomerRepository(new Data.DataBaseConnection());
             _validator = new InputValidator();
             InitializeComponent();
+            CheckFormValidity();
         }
 
         private void firstNameTB_TextChanged(object sender, EventArgs e)
         {
             bool isValidFirstName = _validator.ValidateName(firstNameTB.Text);
             firstNameCheckPL.BackColor = isValidFirstName ? Color.Green : Color.Red;
-            this.IsValidFirstName = isValidFirstName;
+            IsValidFirstName = isValidFirstName;
             CheckFormValidity();
         }
 
@@ -47,7 +48,7 @@ namespace BankApplication.Forms
         {
             bool isValidLastName = _validator.ValidateName(lastNameTB.Text);
             lastNameCheckPL.BackColor = isValidLastName ? Color.Green : Color.Red;
-            this.IsValidLastName = isValidLastName;
+            IsValidLastName = isValidLastName;
             CheckFormValidity();
         }
 
@@ -55,7 +56,7 @@ namespace BankApplication.Forms
         {
             bool isValidAddress = _validator.ValidateAddress(addressTB.Text);
             addressCheckPL.BackColor = isValidAddress ? Color.Green : Color.Red;
-            this.IsValidAddress = isValidAddress;
+            IsValidAddress = isValidAddress;
             CheckFormValidity();
         }
 
@@ -63,7 +64,7 @@ namespace BankApplication.Forms
         {
             bool isValidZipCode = _validator.ValidateZipCode(zipCodeTB.Text);
             zipCodeCheckPL.BackColor = isValidZipCode ? Color.Green : Color.Red;
-            this.IsValidZipCode = isValidZipCode;
+            IsValidZipCode = isValidZipCode;
             CheckFormValidity();
         }
 
@@ -71,7 +72,7 @@ namespace BankApplication.Forms
         {
             bool isValidCity = _validator.ValidateCity(cityTB.Text);
             cityCheckPL.BackColor = isValidCity ? Color.Green : Color.Red;
-            this.IsValidCity = isValidCity;
+            IsValidCity = isValidCity;
             CheckFormValidity();
         }
 
@@ -79,7 +80,7 @@ namespace BankApplication.Forms
         {
             bool isValidUsername = _validator.ValidateUsername(usernameTB.Text);
             userNameCheckPL.BackColor = isValidUsername ? Color.Green : Color.Red;
-            this.IsValidUsername = isValidUsername;
+            IsValidUsername = isValidUsername;
             CheckFormValidity();
         }
 
@@ -87,7 +88,7 @@ namespace BankApplication.Forms
         {
             bool isValidPassword = _validator.ValidatePassword(passwordTB.Text);
             passwordCheckPL.BackColor = isValidPassword ? Color.Green : Color.Red;
-            this.IsValidPassword = isValidPassword;
+            IsValidPassword = isValidPassword;
             CheckFormValidity();
         }
 
@@ -95,7 +96,7 @@ namespace BankApplication.Forms
         {
             bool isValidPhone = _validator.ValidatePhone(phoneTB.Text);
             phoneCheckPL.BackColor = isValidPhone ? Color.Green : Color.Red;
-            this.IsValidPhone = isValidPhone;
+            IsValidPhone = isValidPhone;
             CheckFormValidity();
         }
 
@@ -103,7 +104,7 @@ namespace BankApplication.Forms
         {
             bool isValidEmail = _validator.ValidateEmail(emailTB.Text);
             emailCheckPL.BackColor = isValidEmail ? Color.Green : Color.Red;
-            this.IsValidEmail = isValidEmail;
+            IsValidEmail = isValidEmail;
             CheckFormValidity();
         }
         private void CheckFormValidity()
@@ -115,10 +116,21 @@ namespace BankApplication.Forms
 
         private void RegisterUserBT_Click(object sender, EventArgs e)
         {
-            string password = passwordTB.Text;
-            string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
-            Customer toAdd = new Customer(firstNameTB.Text, lastNameTB.Text, addressTB.Text, cityTB.Text, zipCodeTB.Text, emailTB.Text, phoneTB.Text, usernameTB.Text, passwordHash);
+            Customer toAdd = new Customer
+            (
+                firstNameTB.Text.Trim(),
+                lastNameTB.Text.Trim(),
+                addressTB.Text.Trim(),
+                cityTB.Text.Trim(),
+                zipCodeTB.Text.Trim(),
+                emailTB.Text.Trim(),
+                phoneTB.Text.Trim(),
+                usernameTB.Text.Trim(),
+                passwordTB.Text.Trim()
+            );
+
             bool result = _repository.Add(toAdd);
+
             if (result)
             {
                 MessageBox.Show("Registration successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -127,7 +139,7 @@ namespace BankApplication.Forms
             {
                 MessageBox.Show("Registration failed", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            this.Hide();
+            Hide();
             LoginFM loginFM = new LoginFM();
             loginFM.Show();
         }
