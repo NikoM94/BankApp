@@ -8,6 +8,7 @@ namespace BankApplication.Models
 {
     public class Customer
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
@@ -18,8 +19,9 @@ namespace BankApplication.Models
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public Customer(string firstName, string lastName, string address, string city, string postcode, string email, string phone, string userName, string password)
-        { 
+        public Customer(int id, string firstName, string lastName, string address, string city, string postcode, string email, string phone, string userName, string password)
+        {
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Address = address;

@@ -7,17 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BankApplication.Models;
 
 namespace BankApplication.Forms
 {
-    public partial class BankMainViewFM : Form
+    public partial class BankMainView : Form
     {
-        public BankMainViewFM()
+        Customer _loggedInCustomer;
+        public BankMainView(Customer loggedInCustomer)
         {
             InitializeComponent();
+            _loggedInCustomer = loggedInCustomer;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }

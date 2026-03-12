@@ -92,5 +92,86 @@ namespace BankApplication.Repositories
             connection.Close();
             return false;
         }
+
+        // it would be better to use a Result/Option/Either monad here to return either Customer or Error
+        public Customer Login(string userName, string password)
+        {
+            if (!CustomerExists(userName))
+            {
+                return null;
+            }
+            string storedHash = GetPassWordHash(userName);
+
+            if (storedHash == null)
+            {
+                return null;
+            }
+            bool isValid = BCrypt.Net.BCrypt.Verify(password, storedHash);
+
+            if (!isValid)
+            {
+                return null;
+            }
+            return GetCustomer(userName);
+        }
+
+        private Customer GetCustomer(string userName)
+        {
+            string query = "SELECT * FROM customers where username = @usr";
+            var connection = _dbConn.CreateConnection();
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@usr", userName);
+            connection.Open();
+            Customer customer = null;
+            using (MySqlDataReader reader = command.ExecuteReader()) 
+            { 
+                if (reader.Read())
+                {
+                    customer = new Customer(
+                        Convert.ToInt32(reader["id"].ToString()),
+                        reader["firstname"].ToString(),
+                        reader["lastname"].ToString(),
+                        reader["address"].ToString(),
+                        reader["city"].ToString(),
+                        reader["zipcode"].ToString(),
+                        reader["email"].ToString(),
+                        reader["phone"].ToString(),
+                        reader["username"].ToString(),
+                        reader["password"].ToString()
+                        );
+                }
+            }
+            return customer;
+        }
+
+        private string GetPassWordHash(string userName)
+        {
+            string query = "SELECT password FROM customers WHERE username = @usr";
+            string storedHash = null;
+            var connection = _dbConn.CreateConnection();
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@usr", userName);
+            connection.Open();
+            using (MySqlDataReader reader = command.ExecuteReader()) 
+            { 
+                if (reader.Read())
+                {
+                    storedHash = reader["password"].ToString();
+                }
+            }
+            return storedHash;
+        }
+
+        public bool CustomerExists(string userName)
+        {
+            string query = "SELECT COUNT(*) FROM customers WHERE userName = @usr ";
+            var connection = _dbConn.CreateConnection();
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("username", userName);
+            connection.Open();
+            int count = Convert.ToInt32(command.ExecuteScalar());
+            connection.Close();
+            return count > 0;
+        }
     }
 }

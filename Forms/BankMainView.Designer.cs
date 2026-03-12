@@ -1,6 +1,6 @@
 ﻿namespace BankApplication.Forms
 {
-    partial class BankMainViewFM
+    partial class BankMainView : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -39,9 +39,9 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // BankMainViewFM
+            // BankMainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -49,7 +49,7 @@
             this.Controls.Add(this.button1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "BankMainViewFM";
+            this.Name = "BankMainView";
             this.Text = "BankMainView";
             this.ResumeLayout(false);
 

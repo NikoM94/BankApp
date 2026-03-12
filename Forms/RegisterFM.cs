@@ -118,7 +118,18 @@ namespace BankApplication.Forms
             string password = passwordTB.Text;
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             Customer toAdd = new Customer(firstNameTB.Text, lastNameTB.Text, addressTB.Text, cityTB.Text, zipCodeTB.Text, emailTB.Text, phoneTB.Text, usernameTB.Text, passwordHash);
-            _repository.Add(toAdd);
+            bool result = _repository.Add(toAdd);
+            if (result)
+            {
+                MessageBox.Show("Registration successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Registration failed", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            this.Hide();
+            LoginFM loginFM = new LoginFM();
+            loginFM.Show();
         }
     }
 }
