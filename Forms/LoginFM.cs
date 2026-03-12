@@ -27,7 +27,17 @@ namespace BankApplication.Forms
             string userName = LoginFMUsernameTB.Text;
             string password = LoginFMPasswordTB.Text;
 
-            bool result = _repository.Login(userName, password);
+            Customer customer = _repository.Login(userName, password);
+            if (customer != null)
+            {
+                BankMainView mainView = new BankMainView(customer);
+                this.Hide();
+                mainView.Show();
+            }
+            else
+            {
+                MessageBox.Show("Failed to login", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

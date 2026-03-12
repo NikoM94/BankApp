@@ -2,6 +2,7 @@
 using BankApplication.Models;
 using MySql.Data.MySqlClient;
 using BCrypt.Net;
+using FluentResults;
 
 namespace BankApplication.Repositories
 {
@@ -93,26 +94,30 @@ namespace BankApplication.Repositories
             return false;
         }
 
-        // it would be better to use a Result/Option/Either monad here to return either Customer or Error
-        public Customer Login(string userName, string password)
+        public Result<Customer> Login(string userName, string password)
         {
             if (!CustomerExists(userName))
             {
-                return null;
+                return Result.Fail<Customer>("Invalid username");
             }
             string storedHash = GetPassWordHash(userName);
 
             if (storedHash == null)
             {
-                return null;
+                return Result.Fail<Customer>("Password was null");
             }
             bool isValid = BCrypt.Net.BCrypt.Verify(password, storedHash);
 
             if (!isValid)
             {
-                return null;
+                return Result.Fail<Customer>("Invalid password");
             }
-            return GetCustomer(userName);
+            Customer customer = GetCustomer(userName);
+            if (customer == null)
+            {
+                return Result.Fail<Customer>("Failed to get customer");
+            }
+            return Result.Ok(customer);
         }
 
         private Customer GetCustomer(string userName)
