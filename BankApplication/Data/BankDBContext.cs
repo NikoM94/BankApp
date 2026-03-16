@@ -20,6 +20,24 @@ namespace BankApplication.Data
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Transaction>(entity =>
+            {
+                entity.ToTable("transactions");
+
+                entity.HasOne(t => t.AccountFrom)
+                      .WithMany(a => a.OutgoingTransactions)
+                      .HasForeignKey(t => t.AccountIdFrom)
+                      .OnDelete(DeleteBehavior.Restrict);
+
+                // 2. Vastaanottaja-suhde
+                entity.HasOne(t => t.AccountTo)
+                      .WithMany(a => a.IncomingTransactions)
+                      .HasForeignKey(t => t.AccountIdTo)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

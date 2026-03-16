@@ -42,7 +42,8 @@ namespace BankApplication.Repositories
             existing.Balance = updatedAccount.Balance;
             existing.AccountNumber = updatedAccount.AccountNumber;
             existing.Status = updatedAccount.Status;
-            existing.Transactions = updatedAccount.Transactions;
+            existing.IncomingTransactions = updatedAccount.IncomingTransactions;
+            existing.OutgoingTransactions = updatedAccount.OutgoingTransactions;
 
             return _db.SaveChanges() > 0;
         }

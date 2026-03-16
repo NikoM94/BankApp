@@ -19,7 +19,8 @@ namespace DataSeeder.Fakers
             RuleFor(a => a.AccountNumber, f => f.Finance.Iban());
             RuleFor(a => a.Balance, f => f.Random.Double(0, 5000));
             RuleFor(a => a.Status, f => AccountStatus.Active);
-            RuleFor(a => a.Transactions, f => new List<Transaction>());
+            RuleFor(a => a.IncomingTransactions, f => new List<Transaction>());
+            RuleFor(a => a.OutgoingTransactions, f => new List<Transaction>());
         }
     }
 }

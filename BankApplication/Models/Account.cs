@@ -11,16 +11,18 @@ namespace BankApplication.Models
         public double Balance { get; set; } = 0;
         public string AccountNumber { get; set; } = string.Empty;
         public AccountStatus Status { get; set; } = AccountStatus.Active;
-        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
+        public List<Transaction> OutgoingTransactions { get; set; } = new();
+        public List<Transaction> IncomingTransactions { get; set; } = new(); 
         public int CustomerId { get; set; }
         public int Id { get; set; }
 
-        public Account(double balance, string accountNumber, AccountStatus status, List<Transaction> transactions, int customerId)
+        public Account(double balance, string accountNumber, AccountStatus status, List<Transaction> outgoingTransactions, List<Transaction> incomingTransactions, int customerId)
         {
             Balance = balance;
             AccountNumber = accountNumber;
             Status = status;
-            Transactions = transactions;
+            OutgoingTransactions = outgoingTransactions;
+            IncomingTransactions = incomingTransactions;
             CustomerId = customerId;
         }
 

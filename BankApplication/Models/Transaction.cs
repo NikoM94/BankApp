@@ -10,18 +10,20 @@ namespace BankApplication.Models
     {
         public int AccountIdFrom { get; set; }
         public int AccountIdTo { get; set; }
-        public double? Amount { get; set; }
+        public double Amount { get; set; }
         public DateTime? Date { get; set; }
-        public string? Details { get; set; }
+        public string Details { get; set; }
         public int Id { get; set; }
+        public Account AccountFrom { get; set; } = null!;
+        public Account AccountTo { get; set; } = null!;
 
         public Transaction(int accountIdFrom, int accountIdTo, double amount, DateTime date, string details) 
         { 
-            this.AccountIdFrom = accountIdFrom;
-            this.Amount = amount;
-            this.Date = date;
-            this.Details = details;
-            this.AccountIdTo = accountIdTo;
+            AccountIdFrom = accountIdFrom;
+            Amount = amount;
+            Date = date;
+            Details = details;
+            AccountIdTo = accountIdTo;
         }
 
         public Transaction() { }
