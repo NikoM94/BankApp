@@ -11,7 +11,6 @@ using BankApplication.Models;
 using BankApplication.Repositories;
 using BankApplication.Data;
 using FluentResults;
-using MySqlX.XDevAPI.Common;
 
 namespace BankApplication.Forms
 {
@@ -21,7 +20,7 @@ namespace BankApplication.Forms
         public LoginFM()
         {
             InitializeComponent();
-            _repository = new CustomerRepository(new DataBaseConnection());
+            _repository = new CustomerRepository(new BankDbContext());
         }
 
         private void LoginFMLoginBT_Click(object sender, EventArgs e)

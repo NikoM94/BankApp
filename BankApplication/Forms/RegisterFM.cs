@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BankApplication.Utils;
-using BCrypt.Net;
 using BankApplication.Models;
 using BankApplication.Repositories;
 
@@ -25,12 +24,12 @@ namespace BankApplication.Forms
         private bool IsValidPassword = false;
         private bool IsValidPhone = false;
         private bool IsValidEmail = false;
-        private InputValidator _validator;
+        private readonly InputValidator _validator;
         private readonly CustomerRepository _repository;
 
         public RegisterFM()
         {
-            _repository = new CustomerRepository(new Data.DataBaseConnection());
+            _repository = new CustomerRepository(new Data.BankDbContext());
             _validator = new InputValidator();
             InitializeComponent();
             CheckFormValidity();
@@ -116,6 +115,12 @@ namespace BankApplication.Forms
 
         private void RegisterUserBT_Click(object sender, EventArgs e)
         {
+            if (_repository.CustomerExists(usernameTB.Text.Trim()))
+            {
+                MessageBox.Show("Username already exists!");
+                return;
+            }
+
             Customer toAdd = new Customer
             (
                 firstNameTB.Text.Trim(),
@@ -137,7 +142,7 @@ namespace BankApplication.Forms
             }
             else
             {
-                MessageBox.Show("Registration failed", "Success", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Registration failed", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             Hide();
             LoginFM loginFM = new LoginFM();
