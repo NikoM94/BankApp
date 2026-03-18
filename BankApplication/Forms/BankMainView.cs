@@ -43,18 +43,7 @@ namespace BankApplication.Forms
 
         private void AccountsCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (AccountsCB.SelectedItem is Account selectedAccount)
-            {
-                transactionsForAccount = _transactionRepository
-                    .GetTransactionsForAccount(selectedAccount.Id).Value;
-
-                AccountsDG.DataSource = transactionsForAccount.Select(t => new
-                {
-                    Amount = t.Amount.ToString("C"),
-                    t.Message,
-                    Date = t.Date.ToString()
-                }).ToList();
-            }
+            ShowAllTransactionsForSelectedAccount();
         }
 
         private void SearchTransactionBT_Click(object sender, EventArgs e)
@@ -108,6 +97,27 @@ namespace BankApplication.Forms
                     MessageBox.Show("Enter a text to search and select valid dates", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 AccountsDG.DataSource = filteredTransactions;
+            }
+        }
+
+        private void ResetSearchBT_Click(object sender, EventArgs e)
+        {
+            ShowAllTransactionsForSelectedAccount();
+        }
+
+        private void ShowAllTransactionsForSelectedAccount()
+        {
+            if (AccountsCB.SelectedItem is Account selectedAccount)
+            {
+                transactionsForAccount = _transactionRepository
+                    .GetTransactionsForAccount(selectedAccount.Id).Value;
+
+                AccountsDG.DataSource = transactionsForAccount.Select(t => new
+                {
+                    Amount = t.Amount.ToString("C"),
+                    t.Message,
+                    Date = t.Date.ToString()
+                }).ToList();
             }
         }
     }

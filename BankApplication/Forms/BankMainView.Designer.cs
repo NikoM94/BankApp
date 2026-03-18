@@ -40,6 +40,8 @@
             this.contactSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AccountListingPL = new System.Windows.Forms.Panel();
+            this.SearchOptionsFromToRB = new System.Windows.Forms.RadioButton();
+            this.SearchOptionsTextRB = new System.Windows.Forms.RadioButton();
             this.SearchTransactionBT = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.SearchToDTP = new System.Windows.Forms.DateTimePicker();
@@ -51,8 +53,7 @@
             this.AccountsDG = new System.Windows.Forms.DataGridView();
             this.AccountsCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.SearchOptionsTextRB = new System.Windows.Forms.RadioButton();
-            this.SearchOptionsFromToRB = new System.Windows.Forms.RadioButton();
+            this.ResetSearchBT = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.AccountListingPL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDG)).BeginInit();
@@ -143,6 +144,7 @@
             // 
             this.AccountListingPL.AutoSize = true;
             this.AccountListingPL.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.AccountListingPL.Controls.Add(this.ResetSearchBT);
             this.AccountListingPL.Controls.Add(this.SearchOptionsFromToRB);
             this.AccountListingPL.Controls.Add(this.SearchOptionsTextRB);
             this.AccountListingPL.Controls.Add(this.SearchTransactionBT);
@@ -158,8 +160,30 @@
             this.AccountListingPL.Controls.Add(this.label1);
             this.AccountListingPL.Location = new System.Drawing.Point(12, 27);
             this.AccountListingPL.Name = "AccountListingPL";
-            this.AccountListingPL.Size = new System.Drawing.Size(494, 591);
+            this.AccountListingPL.Size = new System.Drawing.Size(495, 591);
             this.AccountListingPL.TabIndex = 1;
+            // 
+            // SearchOptionsFromToRB
+            // 
+            this.SearchOptionsFromToRB.AutoSize = true;
+            this.SearchOptionsFromToRB.Location = new System.Drawing.Point(359, 24);
+            this.SearchOptionsFromToRB.Name = "SearchOptionsFromToRB";
+            this.SearchOptionsFromToRB.Size = new System.Drawing.Size(133, 25);
+            this.SearchOptionsFromToRB.TabIndex = 12;
+            this.SearchOptionsFromToRB.TabStop = true;
+            this.SearchOptionsFromToRB.Text = "Search from/to";
+            this.SearchOptionsFromToRB.UseVisualStyleBackColor = true;
+            // 
+            // SearchOptionsTextRB
+            // 
+            this.SearchOptionsTextRB.AutoSize = true;
+            this.SearchOptionsTextRB.Location = new System.Drawing.Point(359, 3);
+            this.SearchOptionsTextRB.Name = "SearchOptionsTextRB";
+            this.SearchOptionsTextRB.Size = new System.Drawing.Size(104, 25);
+            this.SearchOptionsTextRB.TabIndex = 11;
+            this.SearchOptionsTextRB.TabStop = true;
+            this.SearchOptionsTextRB.Text = "Search text";
+            this.SearchOptionsTextRB.UseVisualStyleBackColor = true;
             // 
             // SearchTransactionBT
             // 
@@ -276,27 +300,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "My accounts";
             // 
-            // SearchOptionsTextRB
+            // ResetSearchBT
             // 
-            this.SearchOptionsTextRB.AutoSize = true;
-            this.SearchOptionsTextRB.Location = new System.Drawing.Point(358, 9);
-            this.SearchOptionsTextRB.Name = "SearchOptionsTextRB";
-            this.SearchOptionsTextRB.Size = new System.Drawing.Size(104, 25);
-            this.SearchOptionsTextRB.TabIndex = 11;
-            this.SearchOptionsTextRB.TabStop = true;
-            this.SearchOptionsTextRB.Text = "Search text";
-            this.SearchOptionsTextRB.UseVisualStyleBackColor = true;
-            // 
-            // SearchOptionsFromToRB
-            // 
-            this.SearchOptionsFromToRB.AutoSize = true;
-            this.SearchOptionsFromToRB.Location = new System.Drawing.Point(358, 32);
-            this.SearchOptionsFromToRB.Name = "SearchOptionsFromToRB";
-            this.SearchOptionsFromToRB.Size = new System.Drawing.Size(133, 25);
-            this.SearchOptionsFromToRB.TabIndex = 12;
-            this.SearchOptionsFromToRB.TabStop = true;
-            this.SearchOptionsFromToRB.Text = "Search from/to";
-            this.SearchOptionsFromToRB.UseVisualStyleBackColor = true;
+            this.ResetSearchBT.Location = new System.Drawing.Point(411, 45);
+            this.ResetSearchBT.Name = "ResetSearchBT";
+            this.ResetSearchBT.Size = new System.Drawing.Size(66, 30);
+            this.ResetSearchBT.TabIndex = 13;
+            this.ResetSearchBT.Text = "Reset";
+            this.ResetSearchBT.UseVisualStyleBackColor = true;
+            this.ResetSearchBT.Click += new System.EventHandler(this.ResetSearchBT_Click);
             // 
             // BankMainView
             // 
@@ -349,5 +361,6 @@
         private Button SearchTransactionBT;
         private RadioButton SearchOptionsFromToRB;
         private RadioButton SearchOptionsTextRB;
+        private Button ResetSearchBT;
     }
 }
