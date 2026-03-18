@@ -18,6 +18,7 @@ namespace BankApplication.Forms
         Customer _loggedInCustomer;
         AccountRepository _accountRepository;
         TransactionRepository _transactionRepository;
+        List<Transaction> transactionsForAccount = new List<Transaction>();
 
         public BankMainView(Customer loggedInCustomer, BankDbContext _context)
         {
@@ -44,7 +45,7 @@ namespace BankApplication.Forms
         {
             if (AccountsCB.SelectedItem is Account selectedAccount)
             {
-                var transactionsForAccount = _transactionRepository
+                transactionsForAccount = _transactionRepository
                     .GetTransactionsForAccount(selectedAccount.Id).Value;
 
                 AccountsDG.DataSource = transactionsForAccount.Select(t => new
@@ -53,6 +54,60 @@ namespace BankApplication.Forms
                     t.Message,
                     Date = t.Date.ToString()
                 }).ToList();
+            }
+        }
+
+        private void SearchTransactionBT_Click(object sender, EventArgs e)
+        {
+            var dateFrom = SearchFromDTP.Value;
+            var dateTo = SearchToDTP.Value;
+            bool searchText = SearchOptionsTextRB.Checked;
+            bool searchFromTo = SearchOptionsFromToRB.Checked;
+            string pattern = SearchTransactionsTB.Text;
+            var filteredTransactions = new List<Transaction>();
+
+            if (!searchText && !searchFromTo)
+            {
+                MessageBox.Show("Select search options", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!searchText && searchFromTo)
+            {
+                if (dateFrom < dateTo)
+                {
+                    filteredTransactions = transactionsForAccount.Where(t => t.Date >= dateFrom && t.Date <= dateTo).ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Search from must be before search to", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                AccountsDG.DataSource = filteredTransactions;
+                return;
+            }
+            if (searchText && !searchFromTo)
+            {
+                if (pattern != "")
+                {
+                    filteredTransactions = transactionsForAccount.Where(t => t.Message.Contains(pattern)).ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Enter a text to search", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                AccountsDG.DataSource = filteredTransactions;
+                return;
+            }
+            else
+            {
+                if (pattern != "" && dateFrom < dateTo)
+                {
+                    filteredTransactions = transactionsForAccount.Where(t => t.Message.Contains(pattern) && t.Date >= dateFrom && t.Date <= dateTo).ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Enter a text to search and select valid dates", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                AccountsDG.DataSource = filteredTransactions;
             }
         }
     }

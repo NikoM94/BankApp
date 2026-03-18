@@ -42,8 +42,8 @@
             this.AccountListingPL = new System.Windows.Forms.Panel();
             this.SearchTransactionBT = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.SearchToDTP = new System.Windows.Forms.DateTimePicker();
+            this.SearchFromDTP = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.ExportTransactionBT = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,6 +51,8 @@
             this.AccountsDG = new System.Windows.Forms.DataGridView();
             this.AccountsCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.SearchOptionsTextRB = new System.Windows.Forms.RadioButton();
+            this.SearchOptionsFromToRB = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.AccountListingPL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDG)).BeginInit();
@@ -141,10 +143,12 @@
             // 
             this.AccountListingPL.AutoSize = true;
             this.AccountListingPL.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.AccountListingPL.Controls.Add(this.SearchOptionsFromToRB);
+            this.AccountListingPL.Controls.Add(this.SearchOptionsTextRB);
             this.AccountListingPL.Controls.Add(this.SearchTransactionBT);
             this.AccountListingPL.Controls.Add(this.label4);
-            this.AccountListingPL.Controls.Add(this.dateTimePicker2);
-            this.AccountListingPL.Controls.Add(this.dateTimePicker1);
+            this.AccountListingPL.Controls.Add(this.SearchToDTP);
+            this.AccountListingPL.Controls.Add(this.SearchFromDTP);
             this.AccountListingPL.Controls.Add(this.label3);
             this.AccountListingPL.Controls.Add(this.ExportTransactionBT);
             this.AccountListingPL.Controls.Add(this.label2);
@@ -154,7 +158,7 @@
             this.AccountListingPL.Controls.Add(this.label1);
             this.AccountListingPL.Location = new System.Drawing.Point(12, 27);
             this.AccountListingPL.Name = "AccountListingPL";
-            this.AccountListingPL.Size = new System.Drawing.Size(493, 591);
+            this.AccountListingPL.Size = new System.Drawing.Size(494, 591);
             this.AccountListingPL.TabIndex = 1;
             // 
             // SearchTransactionBT
@@ -166,6 +170,7 @@
             this.SearchTransactionBT.TabIndex = 10;
             this.SearchTransactionBT.Text = "Search";
             this.SearchTransactionBT.UseVisualStyleBackColor = true;
+            this.SearchTransactionBT.Click += new System.EventHandler(this.SearchTransactionBT_Click);
             // 
             // label4
             // 
@@ -179,25 +184,25 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Search to";
             // 
-            // dateTimePicker2
+            // SearchToDTP
             // 
-            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(310, 78);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(95, 25);
-            this.dateTimePicker2.TabIndex = 8;
+            this.SearchToDTP.CustomFormat = "dd/MM/yyyy";
+            this.SearchToDTP.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SearchToDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.SearchToDTP.Location = new System.Drawing.Point(310, 78);
+            this.SearchToDTP.Name = "SearchToDTP";
+            this.SearchToDTP.Size = new System.Drawing.Size(95, 25);
+            this.SearchToDTP.TabIndex = 8;
             // 
-            // dateTimePicker1
+            // SearchFromDTP
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(210, 78);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(94, 25);
-            this.dateTimePicker1.TabIndex = 7;
+            this.SearchFromDTP.CustomFormat = "dd/MM/yyyy";
+            this.SearchFromDTP.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SearchFromDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.SearchFromDTP.Location = new System.Drawing.Point(210, 78);
+            this.SearchFromDTP.Name = "SearchFromDTP";
+            this.SearchFromDTP.Size = new System.Drawing.Size(94, 25);
+            this.SearchFromDTP.TabIndex = 7;
             // 
             // label3
             // 
@@ -271,6 +276,28 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "My accounts";
             // 
+            // SearchOptionsTextRB
+            // 
+            this.SearchOptionsTextRB.AutoSize = true;
+            this.SearchOptionsTextRB.Location = new System.Drawing.Point(358, 9);
+            this.SearchOptionsTextRB.Name = "SearchOptionsTextRB";
+            this.SearchOptionsTextRB.Size = new System.Drawing.Size(104, 25);
+            this.SearchOptionsTextRB.TabIndex = 11;
+            this.SearchOptionsTextRB.TabStop = true;
+            this.SearchOptionsTextRB.Text = "Search text";
+            this.SearchOptionsTextRB.UseVisualStyleBackColor = true;
+            // 
+            // SearchOptionsFromToRB
+            // 
+            this.SearchOptionsFromToRB.AutoSize = true;
+            this.SearchOptionsFromToRB.Location = new System.Drawing.Point(358, 32);
+            this.SearchOptionsFromToRB.Name = "SearchOptionsFromToRB";
+            this.SearchOptionsFromToRB.Size = new System.Drawing.Size(133, 25);
+            this.SearchOptionsFromToRB.TabIndex = 12;
+            this.SearchOptionsFromToRB.TabStop = true;
+            this.SearchOptionsFromToRB.Text = "Search from/to";
+            this.SearchOptionsFromToRB.UseVisualStyleBackColor = true;
+            // 
             // BankMainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -310,8 +337,8 @@
         private ToolStripMenuItem logOutToolStripMenuItem;
         private Panel AccountListingPL;
         private Label label4;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker SearchToDTP;
+        private DateTimePicker SearchFromDTP;
         private Label label3;
         private Button ExportTransactionBT;
         private Label label2;
@@ -320,5 +347,7 @@
         private ComboBox AccountsCB;
         private Label label1;
         private Button SearchTransactionBT;
+        private RadioButton SearchOptionsFromToRB;
+        private RadioButton SearchOptionsTextRB;
     }
 }
