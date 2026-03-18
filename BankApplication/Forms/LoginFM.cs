@@ -31,7 +31,7 @@ namespace BankApplication.Forms
             Result<Customer> customer = _repository.Login(userName, password);
             if (customer.IsSuccess)
             {
-                BankMainView mainView = new BankMainView(customer.Value);
+                BankMainView mainView = new BankMainView(customer.Value, new BankDbContext());
                 this.Hide();
                 mainView.Show();
             }

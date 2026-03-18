@@ -18,7 +18,7 @@ namespace BankApplication.Models
         public string? Phone { get; set; }
         public string? UserName { get; set; }
         public string? Password { get; set; }
-        public List<Transaction> Accounts { get; set; } = new List<Transaction>();
+        public List<Account> Accounts { get; set; } = new List<Account>();
 
         public Customer
         (

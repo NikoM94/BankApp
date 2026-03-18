@@ -27,7 +27,7 @@ namespace DataSeeder.Fakers
 
             RuleFor(t => t.Amount, f => f.Random.Double(5, 500));
             RuleFor(t => t.Date, f => f.Date.Past(1));
-            RuleFor(t => t.Details, f => f.Finance.TransactionType());
+            RuleFor(t => t.Message, f => f.Finance.TransactionType());
         }
     }
 }

@@ -28,6 +28,19 @@ namespace DataSeeder
                 Console.WriteLine("Generating new test data...");
 
                 var customers = new CustomerFaker().Generate(10);
+                customers.Insert(0, new Customer
+                {
+                    FirstName = "System",
+                    LastName = "Administrator",
+                    Address = "System",
+                    City = "System",
+                    ZipCode = "System",
+                    Email = "System",
+                    Accounts = new List<Account>(),
+                    Phone = "System",
+                    UserName = "admin",
+                    Password = BCrypt.Net.BCrypt.HashPassword("admin")
+                });
                 context.Customers.AddRange(customers);
                 context.SaveChanges();
 

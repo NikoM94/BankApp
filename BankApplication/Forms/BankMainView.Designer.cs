@@ -40,6 +40,7 @@
             this.contactSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AccountListingPL = new System.Windows.Forms.Panel();
+            this.SearchTransactionBT = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -48,9 +49,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SearchTransactionsTB = new System.Windows.Forms.TextBox();
             this.AccountsDG = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.AccountsCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.SearchTransactionBT = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.AccountListingPL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDG)).BeginInit();
@@ -139,6 +139,7 @@
             // 
             // AccountListingPL
             // 
+            this.AccountListingPL.AutoSize = true;
             this.AccountListingPL.BackColor = System.Drawing.SystemColors.ControlLight;
             this.AccountListingPL.Controls.Add(this.SearchTransactionBT);
             this.AccountListingPL.Controls.Add(this.label4);
@@ -149,12 +150,22 @@
             this.AccountListingPL.Controls.Add(this.label2);
             this.AccountListingPL.Controls.Add(this.SearchTransactionsTB);
             this.AccountListingPL.Controls.Add(this.AccountsDG);
-            this.AccountListingPL.Controls.Add(this.comboBox1);
+            this.AccountListingPL.Controls.Add(this.AccountsCB);
             this.AccountListingPL.Controls.Add(this.label1);
             this.AccountListingPL.Location = new System.Drawing.Point(12, 27);
             this.AccountListingPL.Name = "AccountListingPL";
             this.AccountListingPL.Size = new System.Drawing.Size(493, 591);
             this.AccountListingPL.TabIndex = 1;
+            // 
+            // SearchTransactionBT
+            // 
+            this.SearchTransactionBT.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.SearchTransactionBT.Location = new System.Drawing.Point(411, 74);
+            this.SearchTransactionBT.Name = "SearchTransactionBT";
+            this.SearchTransactionBT.Size = new System.Drawing.Size(66, 31);
+            this.SearchTransactionBT.TabIndex = 10;
+            this.SearchTransactionBT.Text = "Search";
+            this.SearchTransactionBT.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -239,13 +250,14 @@
             this.AccountsDG.Size = new System.Drawing.Size(466, 469);
             this.AccountsDG.TabIndex = 2;
             // 
-            // comboBox1
+            // AccountsCB
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(11, 27);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(223, 29);
-            this.comboBox1.TabIndex = 0;
+            this.AccountsCB.FormattingEnabled = true;
+            this.AccountsCB.Location = new System.Drawing.Point(11, 27);
+            this.AccountsCB.Name = "AccountsCB";
+            this.AccountsCB.Size = new System.Drawing.Size(223, 29);
+            this.AccountsCB.TabIndex = 0;
+            this.AccountsCB.SelectedIndexChanged += new System.EventHandler(this.AccountsCB_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -259,20 +271,11 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "My accounts";
             // 
-            // SearchTransactionBT
-            // 
-            this.SearchTransactionBT.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.SearchTransactionBT.Location = new System.Drawing.Point(411, 74);
-            this.SearchTransactionBT.Name = "SearchTransactionBT";
-            this.SearchTransactionBT.Size = new System.Drawing.Size(66, 31);
-            this.SearchTransactionBT.TabIndex = 10;
-            this.SearchTransactionBT.Text = "Search";
-            this.SearchTransactionBT.UseVisualStyleBackColor = true;
-            // 
             // BankMainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(517, 630);
             this.Controls.Add(this.AccountListingPL);
             this.Controls.Add(this.menuStrip1);
@@ -281,6 +284,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BankMainView";
             this.Text = "BankMainView";
+            this.Load += new System.EventHandler(this.BankMainView_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.AccountListingPL.ResumeLayout(false);
@@ -313,7 +317,7 @@
         private Label label2;
         private TextBox SearchTransactionsTB;
         private DataGridView AccountsDG;
-        private ComboBox comboBox1;
+        private ComboBox AccountsCB;
         private Label label1;
         private Button SearchTransactionBT;
     }

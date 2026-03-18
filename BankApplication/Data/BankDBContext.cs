@@ -27,13 +27,12 @@ namespace BankApplication.Data
                 entity.ToTable("transactions");
 
                 entity.HasOne(t => t.AccountFrom)
-                      .WithMany(a => a.OutgoingTransactions)
+                      .WithMany(a => a.IncomingTransactions)
                       .HasForeignKey(t => t.AccountIdFrom)
                       .OnDelete(DeleteBehavior.Restrict);
 
-                // 2. Vastaanottaja-suhde
                 entity.HasOne(t => t.AccountTo)
-                      .WithMany(a => a.IncomingTransactions)
+                      .WithMany(a => a.OutgoingTransactions)
                       .HasForeignKey(t => t.AccountIdTo)
                       .OnDelete(DeleteBehavior.Restrict);
             });

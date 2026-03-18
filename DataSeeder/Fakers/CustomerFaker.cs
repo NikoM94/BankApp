@@ -20,7 +20,7 @@ namespace DataSeeder.Fakers
             RuleFor(c => c.Email, (f, c) => f.Internet.Email(c.FirstName, c.LastName));
             RuleFor(c => c.Phone, (f, c) => f.Phone.PhoneNumber());
             RuleFor(c => c.UserName, (f, c) => f.Internet.UserName());
-            RuleFor(c => c.Password, (f, c) => "qwer123");
+            RuleFor(c => c.Password, (f, c) => BCrypt.Net.BCrypt.HashPassword("qwer123"));
         }
     }
 }
