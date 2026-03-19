@@ -19,6 +19,7 @@ namespace BankApplication.Forms
         AccountRepository _accountRepository;
         TransactionRepository _transactionRepository;
         List<Transaction> transactionsForAccount = new List<Transaction>();
+        Control activeControl; 
 
         public BankMainView(Customer loggedInCustomer, BankDbContext _context)
         {
@@ -32,6 +33,7 @@ namespace BankApplication.Forms
         private void BankMainView_Load(object sender, EventArgs e)
         {
             PopulateAccountsCB();
+            activeControl = AccountListingPL;
         }
 
         private void PopulateAccountsCB()
@@ -119,6 +121,23 @@ namespace BankApplication.Forms
                     Date = t.Date.ToString()
                 }).ToList();
             }
+        }
+
+        private void SwitchDisplayedControl(Control controlToDisplay)
+        {
+            activeControl.Hide();
+            activeControl = controlToDisplay;
+            activeControl.Show();
+        }
+
+        private void transferFundsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SwitchDisplayedControl(CreateTransactionPL);
+        }
+
+        private void viewAllTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SwitchDisplayedControl(AccountListingPL);
         }
     }
 }

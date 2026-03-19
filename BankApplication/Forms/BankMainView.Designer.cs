@@ -40,6 +40,7 @@
             this.contactSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AccountListingPL = new System.Windows.Forms.Panel();
+            this.ResetSearchBT = new System.Windows.Forms.Button();
             this.SearchOptionsFromToRB = new System.Windows.Forms.RadioButton();
             this.SearchOptionsTextRB = new System.Windows.Forms.RadioButton();
             this.SearchTransactionBT = new System.Windows.Forms.Button();
@@ -47,13 +48,12 @@
             this.SearchToDTP = new System.Windows.Forms.DateTimePicker();
             this.SearchFromDTP = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.ExportTransactionBT = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SearchTransactionsTB = new System.Windows.Forms.TextBox();
             this.AccountsDG = new System.Windows.Forms.DataGridView();
             this.AccountsCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ResetSearchBT = new System.Windows.Forms.Button();
+            this.CreateTransactionPL = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.AccountListingPL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDG)).BeginInit();
@@ -121,12 +121,14 @@
             this.transferFundsToolStripMenuItem.Name = "transferFundsToolStripMenuItem";
             this.transferFundsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.transferFundsToolStripMenuItem.Text = "Transfer funds";
+            this.transferFundsToolStripMenuItem.Click += new System.EventHandler(this.transferFundsToolStripMenuItem_Click);
             // 
             // viewAllTransactionsToolStripMenuItem
             // 
             this.viewAllTransactionsToolStripMenuItem.Name = "viewAllTransactionsToolStripMenuItem";
             this.viewAllTransactionsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.viewAllTransactionsToolStripMenuItem.Text = "View all transactions";
+            this.viewAllTransactionsToolStripMenuItem.Click += new System.EventHandler(this.viewAllTransactionsToolStripMenuItem_Click);
             // 
             // contactSupportToolStripMenuItem
             // 
@@ -152,7 +154,6 @@
             this.AccountListingPL.Controls.Add(this.SearchToDTP);
             this.AccountListingPL.Controls.Add(this.SearchFromDTP);
             this.AccountListingPL.Controls.Add(this.label3);
-            this.AccountListingPL.Controls.Add(this.ExportTransactionBT);
             this.AccountListingPL.Controls.Add(this.label2);
             this.AccountListingPL.Controls.Add(this.SearchTransactionsTB);
             this.AccountListingPL.Controls.Add(this.AccountsDG);
@@ -163,10 +164,20 @@
             this.AccountListingPL.Size = new System.Drawing.Size(495, 591);
             this.AccountListingPL.TabIndex = 1;
             // 
+            // ResetSearchBT
+            // 
+            this.ResetSearchBT.Location = new System.Drawing.Point(411, 45);
+            this.ResetSearchBT.Name = "ResetSearchBT";
+            this.ResetSearchBT.Size = new System.Drawing.Size(66, 30);
+            this.ResetSearchBT.TabIndex = 13;
+            this.ResetSearchBT.Text = "Reset";
+            this.ResetSearchBT.UseVisualStyleBackColor = true;
+            this.ResetSearchBT.Click += new System.EventHandler(this.ResetSearchBT_Click);
+            // 
             // SearchOptionsFromToRB
             // 
             this.SearchOptionsFromToRB.AutoSize = true;
-            this.SearchOptionsFromToRB.Location = new System.Drawing.Point(359, 24);
+            this.SearchOptionsFromToRB.Location = new System.Drawing.Point(242, 31);
             this.SearchOptionsFromToRB.Name = "SearchOptionsFromToRB";
             this.SearchOptionsFromToRB.Size = new System.Drawing.Size(133, 25);
             this.SearchOptionsFromToRB.TabIndex = 12;
@@ -177,7 +188,7 @@
             // SearchOptionsTextRB
             // 
             this.SearchOptionsTextRB.AutoSize = true;
-            this.SearchOptionsTextRB.Location = new System.Drawing.Point(359, 3);
+            this.SearchOptionsTextRB.Location = new System.Drawing.Point(242, 10);
             this.SearchOptionsTextRB.Name = "SearchOptionsTextRB";
             this.SearchOptionsTextRB.Size = new System.Drawing.Size(104, 25);
             this.SearchOptionsTextRB.TabIndex = 11;
@@ -240,16 +251,6 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Search from";
             // 
-            // ExportTransactionBT
-            // 
-            this.ExportTransactionBT.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ExportTransactionBT.Location = new System.Drawing.Point(240, 26);
-            this.ExportTransactionBT.Name = "ExportTransactionBT";
-            this.ExportTransactionBT.Size = new System.Drawing.Size(76, 31);
-            this.ExportTransactionBT.TabIndex = 5;
-            this.ExportTransactionBT.Text = "Export";
-            this.ExportTransactionBT.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -300,15 +301,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "My accounts";
             // 
-            // ResetSearchBT
+            // CreateTransactionPL
             // 
-            this.ResetSearchBT.Location = new System.Drawing.Point(411, 45);
-            this.ResetSearchBT.Name = "ResetSearchBT";
-            this.ResetSearchBT.Size = new System.Drawing.Size(66, 30);
-            this.ResetSearchBT.TabIndex = 13;
-            this.ResetSearchBT.Text = "Reset";
-            this.ResetSearchBT.UseVisualStyleBackColor = true;
-            this.ResetSearchBT.Click += new System.EventHandler(this.ResetSearchBT_Click);
+            this.CreateTransactionPL.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.CreateTransactionPL.Location = new System.Drawing.Point(12, 27);
+            this.CreateTransactionPL.Name = "CreateTransactionPL";
+            this.CreateTransactionPL.Size = new System.Drawing.Size(495, 591);
+            this.CreateTransactionPL.TabIndex = 2;
+            this.CreateTransactionPL.Visible = false;
             // 
             // BankMainView
             // 
@@ -316,6 +316,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(517, 630);
+            this.Controls.Add(this.CreateTransactionPL);
             this.Controls.Add(this.AccountListingPL);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -352,7 +353,6 @@
         private DateTimePicker SearchToDTP;
         private DateTimePicker SearchFromDTP;
         private Label label3;
-        private Button ExportTransactionBT;
         private Label label2;
         private TextBox SearchTransactionsTB;
         private DataGridView AccountsDG;
@@ -362,5 +362,6 @@
         private RadioButton SearchOptionsFromToRB;
         private RadioButton SearchOptionsTextRB;
         private Button ResetSearchBT;
+        private Panel CreateTransactionPL;
     }
 }
