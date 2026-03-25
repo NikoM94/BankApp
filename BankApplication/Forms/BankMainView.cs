@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BankApplication.Models;
 using BankApplication.Repositories;
 using BankApplication.Data;
+using System.Text.RegularExpressions;
 
 namespace BankApplication.Forms
 {
@@ -133,11 +134,52 @@ namespace BankApplication.Forms
         private void transferFundsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SwitchDisplayedControl(CreateTransactionPL);
+            TransferFromCB.DataSource = _loggedInCustomer.Accounts;
+            TransferFromCB.DisplayMember = "AccountNumber";
         }
 
         private void viewAllTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SwitchDisplayedControl(AccountListingPL);
+        }
+
+        private void TransferBT_Click(object sender, EventArgs e)
+        {
+            string amount = TransferAmountTB.Text.Trim();
+            if (!ValidateAmount(amount))
+            {
+                string? accountFromIBAN = TransferFromCB.Text.Trim();
+                string accountToIBAN = TransferToTB.Text;
+                string message = TransferMessageRTB.Text.Trim();
+                double validAmount = Convert.ToDouble(amount);
+                int AccountToId = _accountRepository.FindByAccountNumber(accountToIBAN).Value.Id;
+                int AccountFromId = _accountRepository.FindByAccountNumber(accountFromIBAN).Value.Id;
+                Transaction newTransaction = new Transaction(AccountFromId, AccountToId, validAmount, DateTime.Now, message);
+                bool result = _transactionRepository.Add(newTransaction);
+                if (result)
+                {
+                    MessageBox.Show("Transaction successful", "Succees", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Transaction unsuccessful", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ValidateAmount(string amount)
+        {
+            string pattern = @"^\d{1,5},\d{2}$";
+            Regex re = new Regex(pattern);
+            if (re.IsMatch(amount))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

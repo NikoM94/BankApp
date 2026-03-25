@@ -34,6 +34,16 @@ namespace BankApplication.Repositories
             return _db.SaveChanges() > 0;
         }
 
+        public Result<Account> FindByAccountNumber(string accountNumber)
+        {
+            var result = _db.Accounts.FirstOrDefault(a => a.AccountNumber == accountNumber).ToResult<Account>();
+            if (result.IsSuccess)
+            {
+                return result;
+            }
+            return Result.Fail("Failed to find specific account");
+        }
+
         public bool Update(int id, Account updatedAccount)
         {
             var existing = _db.Accounts.Find(id);

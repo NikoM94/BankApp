@@ -54,9 +54,19 @@
             this.AccountsCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CreateTransactionPL = new System.Windows.Forms.Panel();
+            this.TransferAmountTB = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TransferBT = new System.Windows.Forms.Button();
+            this.MessageLB = new System.Windows.Forms.Label();
+            this.TransferMessageRTB = new System.Windows.Forms.RichTextBox();
+            this.TransferToTB = new System.Windows.Forms.TextBox();
+            this.TransferToLB = new System.Windows.Forms.Label();
+            this.TranferToLB = new System.Windows.Forms.Label();
+            this.TransferFromCB = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.AccountListingPL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDG)).BeginInit();
+            this.CreateTransactionPL.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -304,11 +314,110 @@
             // CreateTransactionPL
             // 
             this.CreateTransactionPL.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.CreateTransactionPL.Controls.Add(this.TransferAmountTB);
+            this.CreateTransactionPL.Controls.Add(this.label5);
+            this.CreateTransactionPL.Controls.Add(this.TransferBT);
+            this.CreateTransactionPL.Controls.Add(this.MessageLB);
+            this.CreateTransactionPL.Controls.Add(this.TransferMessageRTB);
+            this.CreateTransactionPL.Controls.Add(this.TransferToTB);
+            this.CreateTransactionPL.Controls.Add(this.TransferToLB);
+            this.CreateTransactionPL.Controls.Add(this.TranferToLB);
+            this.CreateTransactionPL.Controls.Add(this.TransferFromCB);
             this.CreateTransactionPL.Location = new System.Drawing.Point(12, 27);
             this.CreateTransactionPL.Name = "CreateTransactionPL";
             this.CreateTransactionPL.Size = new System.Drawing.Size(495, 591);
             this.CreateTransactionPL.TabIndex = 2;
             this.CreateTransactionPL.Visible = false;
+            // 
+            // TransferAmountTB
+            // 
+            this.TransferAmountTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TransferAmountTB.Location = new System.Drawing.Point(151, 199);
+            this.TransferAmountTB.Name = "TransferAmountTB";
+            this.TransferAmountTB.Size = new System.Drawing.Size(195, 29);
+            this.TransferAmountTB.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(151, 181);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 19);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Amount";
+            // 
+            // TransferBT
+            // 
+            this.TransferBT.Location = new System.Drawing.Point(149, 381);
+            this.TransferBT.Name = "TransferBT";
+            this.TransferBT.Size = new System.Drawing.Size(197, 56);
+            this.TransferBT.TabIndex = 7;
+            this.TransferBT.Text = "Transfer";
+            this.TransferBT.UseVisualStyleBackColor = true;
+            this.TransferBT.Click += new System.EventHandler(this.TransferBT_Click);
+            // 
+            // MessageLB
+            // 
+            this.MessageLB.AutoSize = true;
+            this.MessageLB.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.MessageLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MessageLB.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MessageLB.Location = new System.Drawing.Point(151, 241);
+            this.MessageLB.Name = "MessageLB";
+            this.MessageLB.Size = new System.Drawing.Size(63, 19);
+            this.MessageLB.TabIndex = 6;
+            this.MessageLB.Text = "Message";
+            // 
+            // TransferMessageRTB
+            // 
+            this.TransferMessageRTB.Location = new System.Drawing.Point(151, 260);
+            this.TransferMessageRTB.Name = "TransferMessageRTB";
+            this.TransferMessageRTB.Size = new System.Drawing.Size(195, 115);
+            this.TransferMessageRTB.TabIndex = 5;
+            this.TransferMessageRTB.Text = "";
+            // 
+            // TransferToTB
+            // 
+            this.TransferToTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TransferToTB.Location = new System.Drawing.Point(151, 136);
+            this.TransferToTB.Name = "TransferToTB";
+            this.TransferToTB.Size = new System.Drawing.Size(195, 29);
+            this.TransferToTB.TabIndex = 4;
+            // 
+            // TransferToLB
+            // 
+            this.TransferToLB.AutoSize = true;
+            this.TransferToLB.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TransferToLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TransferToLB.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TransferToLB.Location = new System.Drawing.Point(151, 55);
+            this.TransferToLB.Name = "TransferToLB";
+            this.TransferToLB.Size = new System.Drawing.Size(89, 19);
+            this.TransferToLB.TabIndex = 3;
+            this.TransferToLB.Text = "Transfer from";
+            // 
+            // TranferToLB
+            // 
+            this.TranferToLB.AutoSize = true;
+            this.TranferToLB.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TranferToLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TranferToLB.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TranferToLB.Location = new System.Drawing.Point(151, 118);
+            this.TranferToLB.Name = "TranferToLB";
+            this.TranferToLB.Size = new System.Drawing.Size(73, 19);
+            this.TranferToLB.TabIndex = 2;
+            this.TranferToLB.Text = "Transfer to";
+            // 
+            // TransferFromCB
+            // 
+            this.TransferFromCB.FormattingEnabled = true;
+            this.TransferFromCB.Location = new System.Drawing.Point(151, 73);
+            this.TransferFromCB.Name = "TransferFromCB";
+            this.TransferFromCB.Size = new System.Drawing.Size(195, 29);
+            this.TransferFromCB.TabIndex = 0;
             // 
             // BankMainView
             // 
@@ -330,6 +439,8 @@
             this.AccountListingPL.ResumeLayout(false);
             this.AccountListingPL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDG)).EndInit();
+            this.CreateTransactionPL.ResumeLayout(false);
+            this.CreateTransactionPL.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,5 +474,14 @@
         private RadioButton SearchOptionsTextRB;
         private Button ResetSearchBT;
         private Panel CreateTransactionPL;
+        private Label MessageLB;
+        private RichTextBox TransferMessageRTB;
+        private TextBox TransferToTB;
+        private Label TransferToLB;
+        private Label TranferToLB;
+        private ComboBox TransferFromCB;
+        private Button TransferBT;
+        private TextBox TransferAmountTB;
+        private Label label5;
     }
 }
