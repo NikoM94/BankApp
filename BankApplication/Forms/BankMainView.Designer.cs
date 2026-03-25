@@ -63,10 +63,15 @@
             this.TransferToLB = new System.Windows.Forms.Label();
             this.TranferToLB = new System.Windows.Forms.Label();
             this.TransferFromCB = new System.Windows.Forms.ComboBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BalanceLB = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.AccountListingPL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDG)).BeginInit();
             this.CreateTransactionPL.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -314,6 +319,8 @@
             // CreateTransactionPL
             // 
             this.CreateTransactionPL.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.CreateTransactionPL.Controls.Add(this.panel1);
+            this.CreateTransactionPL.Controls.Add(this.label6);
             this.CreateTransactionPL.Controls.Add(this.TransferAmountTB);
             this.CreateTransactionPL.Controls.Add(this.label5);
             this.CreateTransactionPL.Controls.Add(this.TransferBT);
@@ -332,7 +339,7 @@
             // TransferAmountTB
             // 
             this.TransferAmountTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TransferAmountTB.Location = new System.Drawing.Point(151, 199);
+            this.TransferAmountTB.Location = new System.Drawing.Point(151, 221);
             this.TransferAmountTB.Name = "TransferAmountTB";
             this.TransferAmountTB.Size = new System.Drawing.Size(195, 29);
             this.TransferAmountTB.TabIndex = 9;
@@ -343,7 +350,7 @@
             this.label5.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(151, 181);
+            this.label5.Location = new System.Drawing.Point(151, 203);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 19);
             this.label5.TabIndex = 8;
@@ -351,7 +358,7 @@
             // 
             // TransferBT
             // 
-            this.TransferBT.Location = new System.Drawing.Point(149, 381);
+            this.TransferBT.Location = new System.Drawing.Point(149, 403);
             this.TransferBT.Name = "TransferBT";
             this.TransferBT.Size = new System.Drawing.Size(197, 56);
             this.TransferBT.TabIndex = 7;
@@ -365,7 +372,7 @@
             this.MessageLB.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.MessageLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MessageLB.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MessageLB.Location = new System.Drawing.Point(151, 241);
+            this.MessageLB.Location = new System.Drawing.Point(151, 263);
             this.MessageLB.Name = "MessageLB";
             this.MessageLB.Size = new System.Drawing.Size(63, 19);
             this.MessageLB.TabIndex = 6;
@@ -373,7 +380,7 @@
             // 
             // TransferMessageRTB
             // 
-            this.TransferMessageRTB.Location = new System.Drawing.Point(151, 260);
+            this.TransferMessageRTB.Location = new System.Drawing.Point(151, 282);
             this.TransferMessageRTB.Name = "TransferMessageRTB";
             this.TransferMessageRTB.Size = new System.Drawing.Size(195, 115);
             this.TransferMessageRTB.TabIndex = 5;
@@ -382,7 +389,7 @@
             // TransferToTB
             // 
             this.TransferToTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TransferToTB.Location = new System.Drawing.Point(151, 136);
+            this.TransferToTB.Location = new System.Drawing.Point(151, 158);
             this.TransferToTB.Name = "TransferToTB";
             this.TransferToTB.Size = new System.Drawing.Size(195, 29);
             this.TransferToTB.TabIndex = 4;
@@ -405,7 +412,7 @@
             this.TranferToLB.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TranferToLB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TranferToLB.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TranferToLB.Location = new System.Drawing.Point(151, 118);
+            this.TranferToLB.Location = new System.Drawing.Point(151, 140);
             this.TranferToLB.Name = "TranferToLB";
             this.TranferToLB.Size = new System.Drawing.Size(73, 19);
             this.TranferToLB.TabIndex = 2;
@@ -418,6 +425,34 @@
             this.TransferFromCB.Name = "TransferFromCB";
             this.TransferFromCB.Size = new System.Drawing.Size(195, 29);
             this.TransferFromCB.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(149, 109);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(133, 21);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Available balance:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Controls.Add(this.BalanceLB);
+            this.panel1.Location = new System.Drawing.Point(290, 106);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(145, 34);
+            this.panel1.TabIndex = 11;
+            // 
+            // BalanceLB
+            // 
+            this.BalanceLB.AutoSize = true;
+            this.BalanceLB.Location = new System.Drawing.Point(5, 6);
+            this.BalanceLB.Name = "BalanceLB";
+            this.BalanceLB.Size = new System.Drawing.Size(52, 21);
+            this.BalanceLB.TabIndex = 0;
+            this.BalanceLB.Text = "label7";
             // 
             // BankMainView
             // 
@@ -441,6 +476,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDG)).EndInit();
             this.CreateTransactionPL.ResumeLayout(false);
             this.CreateTransactionPL.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -483,5 +520,9 @@
         private Button TransferBT;
         private TextBox TransferAmountTB;
         private Label label5;
+        private Panel panel1;
+        private Label label6;
+        private HelpProvider helpProvider1;
+        private Label BalanceLB;
     }
 }

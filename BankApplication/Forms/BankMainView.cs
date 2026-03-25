@@ -47,6 +47,10 @@ namespace BankApplication.Forms
         private void AccountsCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             ShowAllTransactionsForSelectedAccount();
+            Account availableBalance =
+                _loggedInCustomer.Accounts
+                .Find(a => a.AccountNumber == AccountsCB.Text.Trim());
+            BalanceLB.Text = availableBalance != null ? availableBalance.Balance.ToString() : "null";
         }
 
         private void SearchTransactionBT_Click(object sender, EventArgs e)
@@ -152,12 +156,16 @@ namespace BankApplication.Forms
                 string accountToIBAN = TransferToTB.Text;
                 string message = TransferMessageRTB.Text.Trim();
                 double validAmount = Convert.ToDouble(amount);
-                int AccountToId = _accountRepository.FindByAccountNumber(accountToIBAN).Value.Id;
-                int AccountFromId = _accountRepository.FindByAccountNumber(accountFromIBAN).Value.Id;
-                Transaction newTransaction = new Transaction(AccountFromId, AccountToId, validAmount, DateTime.Now, message);
+                Account accountFrom = _accountRepository.FindByAccountNumber(accountToIBAN).Value;
+                Account accountTo = _accountRepository.FindByAccountNumber(accountFromIBAN).Value;
+                Transaction newTransaction = new Transaction(accountFrom.Id, accountTo.Id, validAmount, DateTime.Now, message);
                 bool result = _transactionRepository.Add(newTransaction);
                 if (result)
                 {
+                    accountFrom.Balance -= validAmount;
+                    accountTo.Balance += validAmount;
+                    _accountRepository.Update(accountFrom.Id, accountFrom);
+                    _accountRepository.Update(accountTo.Id, accountTo);
                     MessageBox.Show("Transaction successful", "Succees", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -180,6 +188,11 @@ namespace BankApplication.Forms
                 return true;
             }
             return false;
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
