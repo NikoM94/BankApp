@@ -16,13 +16,11 @@ namespace BankApplication.Models
         public int CustomerId { get; set; }
         public int Id { get; set; }
 
-        public Account(double balance, string accountNumber, AccountStatus status, List<Transaction> outgoingTransactions, List<Transaction> incomingTransactions, int customerId)
+        public Account(double balance, string accountNumber, AccountStatus status, int customerId)
         {
             Balance = balance;
             AccountNumber = accountNumber;
             Status = status;
-            OutgoingTransactions = outgoingTransactions;
-            IncomingTransactions = incomingTransactions;
             CustomerId = customerId;
         }
 

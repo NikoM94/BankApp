@@ -11,6 +11,9 @@ using BankApplication.Models;
 using BankApplication.Repositories;
 using BankApplication.Data;
 using System.Text.RegularExpressions;
+using BankApplication.Controls;
+using IbanNet.Builders;
+using IbanNet.Registry;
 
 namespace BankApplication.Forms
 {
@@ -34,6 +37,7 @@ namespace BankApplication.Forms
         private void BankMainView_Load(object sender, EventArgs e)
         {
             PopulateAccountsCB();
+            CreateCustomerAccountCards(_loggedInCustomer);
             activeControl = AccountListingPL;
         }
 
@@ -146,11 +150,32 @@ namespace BankApplication.Forms
         {
             SwitchDisplayedControl(AccountListingPL);
         }
+        private void viewAllAccountsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SwitchDisplayedControl(AccountDashBoardPL);
+            CreateCustomerAccountCards(_loggedInCustomer);
+        }
+
+        private void openANewAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SwitchDisplayedControl(NewAccountPL);
+        }
+
+        private void CreateCustomerAccountCards(Customer loggedInCustomer)
+        {
+            AccountCardFLP.Controls.Clear();
+            foreach (var account in loggedInCustomer.Accounts)
+            {
+                var card = new AccountCardControl();
+                card.UpdateData(account);
+                AccountCardFLP.Controls.Add(card);
+            }
+        }
 
         private void TransferBT_Click(object sender, EventArgs e)
         {
             string amount = TransferAmountTB.Text.Trim();
-            if (!ValidateAmount(amount))
+            if (ValidateAmount(amount))
             {
                 string? accountFromIBAN = TransferFromCB.Text.Trim();
                 string accountToIBAN = TransferToTB.Text;
@@ -193,6 +218,24 @@ namespace BankApplication.Forms
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CreateAccountBT_Click(object sender, EventArgs e)
+        {
+            IbanBuilder builder = new IbanBuilder();
+            var generatedIban = builder
+                .WithCountry(new IbanCountry("FI"))
+                .Build();
+            Account newAccount = new Account(0.0, generatedIban, AccountStatus.Active, _loggedInCustomer.Id);
+            bool result = _accountRepository.Add(newAccount);
+            if (result)
+            {
+                MessageBox.Show("Account creation successful", "Succees", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Account creation failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

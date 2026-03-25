@@ -54,6 +54,9 @@
             this.AccountsCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CreateTransactionPL = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BalanceLB = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.TransferAmountTB = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.TransferBT = new System.Windows.Forms.Button();
@@ -64,14 +67,19 @@
             this.TranferToLB = new System.Windows.Forms.Label();
             this.TransferFromCB = new System.Windows.Forms.ComboBox();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.label6 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.BalanceLB = new System.Windows.Forms.Label();
+            this.AccountDashBoardPL = new System.Windows.Forms.Panel();
+            this.AccountCardFLP = new System.Windows.Forms.FlowLayoutPanel();
+            this.accountCardControl1 = new BankApplication.Controls.AccountCardControl();
+            this.NewAccountPL = new System.Windows.Forms.Panel();
+            this.CreateAccountBT = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.AccountListingPL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDG)).BeginInit();
             this.CreateTransactionPL.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.AccountDashBoardPL.SuspendLayout();
+            this.AccountCardFLP.SuspendLayout();
+            this.NewAccountPL.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -103,6 +111,7 @@
             this.openANewAccountToolStripMenuItem.Name = "openANewAccountToolStripMenuItem";
             this.openANewAccountToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.openANewAccountToolStripMenuItem.Text = "Open a new account";
+            this.openANewAccountToolStripMenuItem.Click += new System.EventHandler(this.openANewAccountToolStripMenuItem_Click);
             // 
             // closeAnAccountToolStripMenuItem
             // 
@@ -121,6 +130,7 @@
             this.viewAllAccountsToolStripMenuItem.Name = "viewAllAccountsToolStripMenuItem";
             this.viewAllAccountsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.viewAllAccountsToolStripMenuItem.Text = "View all accounts";
+            this.viewAllAccountsToolStripMenuItem.Click += new System.EventHandler(this.viewAllAccountsToolStripMenuItem_Click);
             // 
             // transactionsToolStripMenuItem
             // 
@@ -336,6 +346,34 @@
             this.CreateTransactionPL.TabIndex = 2;
             this.CreateTransactionPL.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Controls.Add(this.BalanceLB);
+            this.panel1.Location = new System.Drawing.Point(290, 106);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(145, 34);
+            this.panel1.TabIndex = 11;
+            // 
+            // BalanceLB
+            // 
+            this.BalanceLB.AutoSize = true;
+            this.BalanceLB.Location = new System.Drawing.Point(5, 6);
+            this.BalanceLB.Name = "BalanceLB";
+            this.BalanceLB.Size = new System.Drawing.Size(52, 21);
+            this.BalanceLB.TabIndex = 0;
+            this.BalanceLB.Text = "label7";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(149, 109);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(133, 21);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Available balance:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
             // TransferAmountTB
             // 
             this.TransferAmountTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -426,33 +464,51 @@
             this.TransferFromCB.Size = new System.Drawing.Size(195, 29);
             this.TransferFromCB.TabIndex = 0;
             // 
-            // label6
+            // AccountDashBoardPL
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(149, 109);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 21);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Available balance:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.AccountDashBoardPL.Controls.Add(this.AccountCardFLP);
+            this.AccountDashBoardPL.Location = new System.Drawing.Point(12, 27);
+            this.AccountDashBoardPL.Name = "AccountDashBoardPL";
+            this.AccountDashBoardPL.Size = new System.Drawing.Size(495, 591);
+            this.AccountDashBoardPL.TabIndex = 3;
             // 
-            // panel1
+            // AccountCardFLP
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel1.Controls.Add(this.BalanceLB);
-            this.panel1.Location = new System.Drawing.Point(290, 106);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(145, 34);
-            this.panel1.TabIndex = 11;
+            this.AccountCardFLP.AutoScroll = true;
+            this.AccountCardFLP.Controls.Add(this.accountCardControl1);
+            this.AccountCardFLP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AccountCardFLP.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.AccountCardFLP.Location = new System.Drawing.Point(0, 0);
+            this.AccountCardFLP.Name = "AccountCardFLP";
+            this.AccountCardFLP.Size = new System.Drawing.Size(495, 591);
+            this.AccountCardFLP.TabIndex = 0;
+            this.AccountCardFLP.WrapContents = false;
             // 
-            // BalanceLB
+            // accountCardControl1
             // 
-            this.BalanceLB.AutoSize = true;
-            this.BalanceLB.Location = new System.Drawing.Point(5, 6);
-            this.BalanceLB.Name = "BalanceLB";
-            this.BalanceLB.Size = new System.Drawing.Size(52, 21);
-            this.BalanceLB.TabIndex = 0;
-            this.BalanceLB.Text = "label7";
+            this.accountCardControl1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.accountCardControl1.Location = new System.Drawing.Point(3, 3);
+            this.accountCardControl1.Name = "accountCardControl1";
+            this.accountCardControl1.Size = new System.Drawing.Size(489, 127);
+            this.accountCardControl1.TabIndex = 0;
+            // 
+            // NewAccountPL
+            // 
+            this.NewAccountPL.Controls.Add(this.CreateAccountBT);
+            this.NewAccountPL.Location = new System.Drawing.Point(12, 27);
+            this.NewAccountPL.Name = "NewAccountPL";
+            this.NewAccountPL.Size = new System.Drawing.Size(495, 591);
+            this.NewAccountPL.TabIndex = 4;
+            // 
+            // CreateAccountBT
+            // 
+            this.CreateAccountBT.Location = new System.Drawing.Point(161, 162);
+            this.CreateAccountBT.Name = "CreateAccountBT";
+            this.CreateAccountBT.Size = new System.Drawing.Size(143, 62);
+            this.CreateAccountBT.TabIndex = 0;
+            this.CreateAccountBT.Text = "Open account";
+            this.CreateAccountBT.UseVisualStyleBackColor = true;
+            this.CreateAccountBT.Click += new System.EventHandler(this.CreateAccountBT_Click);
             // 
             // BankMainView
             // 
@@ -460,6 +516,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(517, 630);
+            this.Controls.Add(this.NewAccountPL);
+            this.Controls.Add(this.AccountDashBoardPL);
             this.Controls.Add(this.CreateTransactionPL);
             this.Controls.Add(this.AccountListingPL);
             this.Controls.Add(this.menuStrip1);
@@ -478,6 +536,9 @@
             this.CreateTransactionPL.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.AccountDashBoardPL.ResumeLayout(false);
+            this.AccountCardFLP.ResumeLayout(false);
+            this.NewAccountPL.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -524,5 +585,10 @@
         private Label label6;
         private HelpProvider helpProvider1;
         private Label BalanceLB;
+        private Panel AccountDashBoardPL;
+        private FlowLayoutPanel AccountCardFLP;
+        private Controls.AccountCardControl accountCardControl1;
+        private Panel NewAccountPL;
+        private Button CreateAccountBT;
     }
 }
